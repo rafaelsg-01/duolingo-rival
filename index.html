@@ -60,9 +60,9 @@
                 body {
                     margin: 0;
                     display: flex;
-                    flex-direction: column;
                     align-items: center;
-                    min-height: 100svh; /* Ensure content fills the viewport */
+                    justify-content: center;
+                    height: calc(100svh); /* Ensure content fills the viewport */
                     background: radial-gradient(circle, #e0f7fa, #b3e5fc),
                         linear-gradient(45deg, #b3e5fc, #81d4fa),
                         linear-gradient(135deg, #81d4fa, #e0f7fa),
@@ -114,7 +114,7 @@
                     align-items: center;
                     width: 100%;
                     max-width: 900px; /* Limit the maximum width */
-                    height: 100vh;
+                    height: calc(100svh - 0px);
                 }
 
                 .qr-info {
@@ -338,7 +338,7 @@
                     font-size: 20px;
                     font-weight: 600;
                     letter-spacing: 1px;
-                    color: #00223f;
+                    color: hsl(208deg 100% 12% / 50%);
                 }
                         
                 .hidden {
@@ -554,7 +554,7 @@
                             <a href="https://www.google.com/search?udm=2&q=${encodeURIComponent(card.englishWord)}" target="_blank">
                                 <svg style="
                                         margin-left: 12px;
-                                        color: #202020;
+                                        color: hsl(0deg 0% 13% / 40%);
                                         width: 42px;
                                         height: 42px;
                                     " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title"
@@ -570,13 +570,11 @@
                             <a href="https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q=${encodeURIComponent(card.englishWord)}" target="_blank">
                                 <svg style="
                                         margin-right: 12px;
-                                        color: #202020;
+                                        color: hsl(0deg 0% 13% / 40%);
                                         width: 42px;
                                         height: 42px;
                                     " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title"
                                     aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <path data-name="layer1"
-                                    d="M30 40c-2.2 0-4 1.4-4 3s1.8 3 4 3 4-1.4 4-3-1.8-3-4-3z" fill="#202020"></path>
                                     <path data-name="layer1" d="M24 14V8H2v46a2 2 0 0 0 2 2h56a2 2 0 0 0 2-2V14zm19 18a2 2 0 0 1-2-2c0-2.2-.6-3.8-1.7-4.8a5.7 5.7 0 0 0-3.1-1.2l1.7 17.8v.1A6.1 6.1 0 0 1 38 43c0 3.9-3.6 7-8 7s-8-3.1-8-7 3.6-7 8-7a8.9 8.9 0 0 1 3.4.7l-1.6-16.4 1.9-.3c.2 0 4.9-.7 8.2 2.2S45 26.6 45 30a2 2 0 0 1-2 2z"
                                     fill="currentColor"></path>
                                 </svg>
