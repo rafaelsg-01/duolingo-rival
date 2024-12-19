@@ -415,6 +415,106 @@
                 </div>
             </div>
 
+            <style>
+                .a {
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: column;
+                    align-items: center;
+                    cursor: pointer; padding: 5px;
+                    gap: 2px;
+                    margin: 0px;
+
+                }
+
+                .b {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0px;
+                    align-items: center;
+                    margin: 0px;
+                    height: 100%;
+                    justify-content: space-evenly;
+
+                }
+
+                .c {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    cursor: pointer; padding: 5px;
+                    width: 100%;
+                    gap: 8px;
+
+                }
+
+                .d {
+                    background: hsl(0deg 0% 0% / 6%);
+                    height: 1px;
+                    width: 85%;
+
+                }
+
+                .e {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    cursor: pointer; padding: 5px;
+                    width: 100%;
+                    gap: 8px;
+
+                }
+
+                .f {
+                    background: hsl(0deg 0% 0% / 6%);
+                    height: 1px;
+                    width: 85%;
+
+                }
+
+                .g {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    cursor: pointer; padding: 5px;
+                    width: 100%;
+                    gap: 8px;
+
+                }
+
+                .h {
+                    background: hsl(0deg 0% 0% / 6%);
+                    height: 1px;
+                    width: 85%;
+
+                }
+
+                .i {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+
+                }
+
+                .j {
+                    margin-left: 12px;
+                    color: hsl(0deg 0% 13% / 40%);
+                    width: 42px;
+                    height: 42px;
+
+                }
+
+                .k {
+                    margin-top: 19px;
+                }
+
+                .l {
+                    margin-right: 12px;
+                    color: hsl(0deg 0% 13% / 40%);
+                    width: 42px;
+                    height: 42px;
+                }
+            </style>
 
             <script>
                 // Sample data - Replace with your actual data from the backend
@@ -4963,90 +5063,42 @@
                     qrItem.classList.add('qr-item');
                     qrItem.innerHTML = `
                         
-                        <div onclick="toggleVisibility('possible-words-${index}')" style="
-                            display: flex;
-                            flex-wrap: wrap;
-                            flex-direction: column;
-                            align-items: center;
-                            cursor: pointer; padding: 5px;
-                            gap: 2px;
-                            margin: 0px;
+                        <div class="a" onclick="toggleVisibility('possible-words-${index}')" style="
                         "><h2 style="
                             font-size: 2em;
                         ">${card.englishWord}</h2>
                             <p id="possible-words-${index}" class="hidden momentHidden">${card.possiblePortugueseWords.join(' / ')}</p>
                         </div>
 
-                        <div style="
-                            display: flex;
-                            flex-direction: column;
-                            gap: 0px;
-                            align-items: center;
-                            margin: 0px;
-                            height: 100%;
-                            justify-content: space-evenly;
+                        <div class="b" style="
                         ">
-                            <div onclick="toggleVisibility('sentence1-pt-${index}')" style="
-                                display: flex;
-                                align-items: center;
-                                flex-direction: column;
-                                cursor: pointer; padding: 5px;
-                                width: 100%;
-                                gap: 8px;
+                            <div class="c" onclick="toggleVisibility('sentence1-pt-${index}')" style="
                             ">
                                 <p>${card.sentence1.english}</p>
-                                <div style="
-                                    background: hsl(0deg 0% 0% / 6%);
-                                    height: 1px;
-                                    width: 85%;
+                                <div class="d" style="
                                 "></div>
                                 <p id="sentence1-pt-${index}" class="hidden momentHidden">${card.sentence1.portuguese}</p>
                             </div>
-                            <div onclick="toggleVisibility('sentence2-pt-${index}')" style="
-                                display: flex;
-                                align-items: center;
-                                flex-direction: column;
-                                cursor: pointer; padding: 5px;
-                                width: 100%;
-                                gap: 8px;
+                            <div class="e" onclick="toggleVisibility('sentence2-pt-${index}')" style="
                             ">
                                 <p>${card.sentence2.english}</p>
-                                <div style="
-                                    background: hsl(0deg 0% 0% / 6%);
-                                    height: 1px;
-                                    width: 85%;
+                                <div class="f" style="
                                 "></div>
                                 <p id="sentence2-pt-${index}" class="hidden momentHidden">${card.sentence2.portuguese}</p>
                             </div>
-                            <div onclick="toggleVisibility('sentence3-pt-${index}')" style="
-                                    display: flex;
-                                    align-items: center;
-                                    flex-direction: column;
-                                    cursor: pointer; padding: 5px;
-                                    width: 100%;
-                                    gap: 8px;
+                            <div class="g" onclick="toggleVisibility('sentence3-pt-${index}')" style="
                                 ">
                                 <p>${card.sentence3.english}</p>
-                                <div style="
-                                    background: hsl(0deg 0% 0% / 6%);
-                                    height: 1px;
-                                    width: 85%;
+                                <div class="h" style="
                                 "></div>
                                 <p id="sentence3-pt-${index}" class="hidden momentHidden">${card.sentence3.portuguese}</p>
                             </div>
                         </div>
 
-                        <div class="actions" style="
-                            display: flex;
-                            justify-content: space-between;
-                            width: 100%;
+                        <div class="i" class="actions" style="
                         ">
                             <a href="https://www.google.com/search?udm=2&q=${encodeURIComponent(card.englishWord)}" target="_blank">
-                                <svg style="
-                                        margin-left: 12px;
-                                        color: hsl(0deg 0% 13% / 40%);
-                                        width: 42px;
-                                        height: 42px;
+                                <svg class="j" style="
                                     " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title"
                                     aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <path data-name="layer1"
@@ -5054,15 +5106,10 @@
                                     fill="currentColor"></path>
                                 </svg>
                             </a>
-                            <span class="new-span" id="qrIndex" style="
-                                margin-top: 19px;
+                            <span class="k" class="new-span" id="qrIndex" style="
                             ">N° ${index + 1}</span>
                             <a href="https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q=${encodeURIComponent(card.englishWord)}" target="_blank">
-                                <svg style="
-                                        margin-right: 12px;
-                                        color: hsl(0deg 0% 13% / 40%);
-                                        width: 42px;
-                                        height: 42px;
+                                <svg class="l" style="
                                     " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title"
                                     aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <path data-name="layer1" d="M24 14V8H2v46a2 2 0 0 0 2 2h56a2 2 0 0 0 2-2V14zm19 18a2 2 0 0 1-2-2c0-2.2-.6-3.8-1.7-4.8a5.7 5.7 0 0 0-3.1-1.2l1.7 17.8v.1A6.1 6.1 0 0 1 38 43c0 3.9-3.6 7-8 7s-8-3.1-8-7 3.6-7 8-7a8.9 8.9 0 0 1 3.4.7l-1.6-16.4 1.9-.3c.2 0 4.9-.7 8.2 2.2S45 26.6 45 30a2 2 0 0 1-2 2z"
