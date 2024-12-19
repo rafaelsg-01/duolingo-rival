@@ -20,33 +20,33 @@
             <title>Duolingo's Rival</title>
             <style>
                 @font-face {
-                font-family: 'Baloo';
-                src: url('./fonts/Baloo2-Regular.ttf') format('truetype');
-                font-weight: 400;
+                    font-family: 'Baloo';
+                    src: url('./fonts/Baloo2-Regular.ttf') format('truetype');
+                    font-weight: 400;
                 }
 
                 @font-face {
-                font-family: 'Baloo';
-                src: url('./fonts/Baloo2-Medium.ttf') format('truetype');
-                font-weight: 500;
+                    font-family: 'Baloo';
+                    src: url('./fonts/Baloo2-Medium.ttf') format('truetype');
+                    font-weight: 500;
                 }
 
                 @font-face {
-                font-family: 'Baloo';
-                src: url('./fonts/Baloo2-SemiBold.ttf') format('truetype');
-                font-weight: 600;
+                    font-family: 'Baloo';
+                    src: url('./fonts/Baloo2-SemiBold.ttf') format('truetype');
+                    font-weight: 600;
                 }
 
                 @font-face {
-                font-family: 'Baloo';
-                src: url('./fonts/Baloo2-Bold.ttf') format('truetype');
-                font-weight: 700;
+                    font-family: 'Baloo';
+                    src: url('./fonts/Baloo2-Bold.ttf') format('truetype');
+                    font-weight: 700;
                 }
 
                 @font-face {
-                font-family: 'Baloo';
-                src: url('./fonts/Baloo2-ExtraBold.ttf') format('truetype');
-                font-weight: 800;
+                    font-family: 'Baloo';
+                    src: url('./fonts/Baloo2-ExtraBold.ttf') format('truetype');
+                    font-weight: 800;
                 }
                 *, html {
                     scroll-behavior: smooth !important;
@@ -248,7 +248,7 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-                    min-width: 95%;
+                    min-width: 100%;
                 }
 
                 .arrow-button {
@@ -371,23 +371,19 @@
             </div> -->
 
             <div class="main">
-                <div class="qr-info" style="
+                <!-- <div class="qr-info" style="
                 justify-content: flex-start;
                 margin-left: 46px;
                 margin-top: 12px;
             ">
-                </div>
+                </div> -->
 
                     <div class="qr-container" id="qrContainer" style="
                     height: 100%;
-                    padding-top: 10px;
                 ">
                     </div>
 
-                <div class="buttons" style="
-                width: 100%;
-                justify-content: space-between;
-            ">
+                <div>
                     <div id="prevButton">
                         <svg class="arrow-button arrow-left" viewBox="0 0 64 64">
                             <path d="M64 32a32 32 0 1 0-32 32 32.001 32.001 0 0 0 32-32zM34.79 44.361L19.984 31.828 34.79 19.307a2 2 0 1 1 2.583 3.054l-11.195 9.47 11.196 9.478a2 2 0 1 1-2.585 3.052z"
@@ -410,23 +406,23 @@
                     {
                         englishWord: 'Hello',
                         possiblePortugueseWords: ['Olá', 'Cumprimento', 'Oi'],
-                        sentence1: { english: '<b>Hello</b>, how are you?', portuguese: '<b>Olá</b>, como você está?' },
-                        sentence2: { english: '<b>Hello</b> to everyone here!', portuguese: '<b>Olá</b> a todos aqui!' },
-                        sentence3: { english: 'I wanted to say <b>hello</b>.', portuguese: 'Eu queria dizer <b>olá</b>.' }
+                        sentence1: { english: 'Hello, how are you?', portuguese: 'Olá, como você está?' },
+                        sentence2: { english: 'Hello to everyone here!', portuguese: 'Olá a todos aqui!' },
+                        sentence3: { english: 'I wanted to say hello.', portuguese: 'Eu queria dizer olá.' }
                     },
                     {
                         englishWord: 'World',
                         possiblePortugueseWords: ['Mundo', 'Terra', 'Planeta'],
-                        sentence1: { english: 'The <b>world</b> is beautiful.', portuguese: 'O <b>mundo</b> é lindo.' },
-                        sentence2: { english: 'We live on this <b>world</b>.', portuguese: 'Vivemos neste <b>mundo</b>.' },
-                        sentence3: { english: 'Hello, <b>world</b>!', portuguese: 'Olá, <b>mundo</b>!' }
+                        sentence1: { english: 'The world is beautiful.', portuguese: 'O mundo é lindo.' },
+                        sentence2: { english: 'We live on this world.', portuguese: 'Vivemos neste mundo.' },
+                        sentence3: { english: 'Hello, world!', portuguese: 'Olá, mundo!' }
                     },
                     {
                         englishWord: 'Learn',
                         possiblePortugueseWords: ['Aprender', 'Estudar', 'Conhecer'],
-                        sentence1: { english: 'I want to <b>learn</b> English.', portuguese: 'Quero <b>aprender</b> inglês.' },
-                        sentence2: { english: '<b>Learning</b> is fun!', portuguese: '<b>Aprender</b> é divertido!' },
-                        sentence3: { english: 'We <b>learn</b> something new every day.', portuguese: '<b>Aprendemos</b> algo novo todos os dias.' }
+                        sentence1: { english: 'I want to learn English.', portuguese: 'Quero aprender inglês.' },
+                        sentence2: { english: 'Learning is fun!', portuguese: 'Aprender é divertido!' },
+                        sentence3: { english: 'We learn something new every day.', portuguese: 'Aprendemos algo novo todos os dias.' }
                     }
                 ];
 
