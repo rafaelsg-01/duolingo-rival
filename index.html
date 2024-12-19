@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+    <html lang="pt-BR">
+        <head>
+            <meta charset="UTF-8">
+	        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="robots" content="index, follow">
+            <meta name="googlebot" content="index, follow">
+
+            <meta name="description" content="Rival Do Duolingo | Duolingo's Rival">
+            <meta name="author" content="Da Silva">
+
+            <meta property="og:title" content="Rival Do Duolingo">
+            <meta property="og:description" content="Palavras mais usadas no Inglês | Most used words in English">
+            <meta property="og:type" content="website">
+            <meta property="og:locale" content="pt_BR">
+            <meta property="og:image" content="./capa.jpeg">
+	        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%230b4e88'/></svg>">
+
+            <title>Rival Do Duolingo | Duolingo's Rival</title>
+            <style>
+                *, html {
+                    scroll-behavior: smooth !important;
+                }
+                body * {
+                    font-family: system-ui, sans-serif;
+                    margin: 0;
+                    box-sizing: border-box
+                }
+
+                body {
+                    margin: 0;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    min-height: 100vh; /* Ensure content fills the viewport */
+                    background: radial-gradient(circle, #e0f7fa, #b3e5fc),
+                        linear-gradient(45deg, #b3e5fc, #81d4fa),
+                        linear-gradient(135deg, #81d4fa, #e0f7fa),
+                        linear-gradient(225deg, #e0f7fa, #b3e5fc);
+                }
+
+                h1 {
+                    font-size: 18px;
+                    margin: 0;
+                }
+
+                p {
+                    margin: 0;
+                }
+
+                .header {
+                    text-align: center;
+                    padding: 0.7em;
+                    background-color: #0f3a5f; /* Darker navy blue */
+                    color: white;
+                    width: 100%;
+                    box-sizing: border-box; /* Include padding in width calculation */
+
+                }
+
+                .subheader {
+                    display: flex;
+                    padding: 10px 25px;
+                    padding-bottom: 14px;
+                    background-color: #0d4677;
+                    color: white;
+                    width: 100%;
+                    box-sizing: border-box;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    gap: 5px;
+                    margin-bottom: 90px;
+                }
+
+                .main {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 90%;
+                    max-width: 800px; /* Limit the maximum width */
+                    height: 100vh;
+                }
+
+                .qr-info {
+                    display: flex;
+                    width: 100%;
+                    justify-content: center;
+                    gap: 20%;
+                    margin-bottom: 8px;
+                }
+
+                .qr-container {
+                    display: flex;
+                    overflow-y: hidden;
+                    scroll-snap-type: x mandatory;
+                    scroll-behavior: smooth;
+                    -webkit-overflow-scrolling: touch;
+                    width: 100%;
+                    height: 250px;
+                    align-items: center;
+                    gap: 15px;
+                    overflow-y: auto;
+                }
+
+                /* Aplica margin-left de 300px ao primeiro filho */
+                .qr-container > :first-child {
+                    margin-left: 300px;
+                }
+
+                /* Aplica margin-right de 300px ao último filho */
+                .qr-container > :last-child {
+                    margin-right: 300px;
+                }
+
+                .qr-item.selected { /* Style for selected QR code */
+                    transform: scale(1); /* Increase size by 20% */
+                }
+
+                .qr-link {
+                    margin-top: 10px;
+                    word-break: break-all; /* Allow long URLs to break */
+                }
+
+                .buttons {
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 28px;
+                    margin-bottom: 12px;
+                    gap: 10px; /* Spacing between buttons */
+                    flex-wrap: wrap;
+                }
+
+
+                .button {
+                    padding: 13px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    background-color: hsl(200 100% 50% / 1);
+                    color: white;
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: 600;
+                    letter-spacing: 0.5px;
+                    transition: background-color 0.5s;
+                }
+                
+                .button:hover {
+                    background-color: hsl(200 100% 40% / 1);
+                }
+
+                .button:focus {
+                    background-color: hsl(200 100% 40% / 1);
+                }
+
+                .button:focus-visible {
+                    background-color: hsl(200 100% 40% / 1);
+                }
+
+                .spacer {
+                flex: 0 0 calc((100vw - 220px) / 2); /* Calculate spacer width */
+                height: 1px; /* Spacer doesn't need height */
+                }        
+
+                span {
+                    font-size: 14px;
+                }
+
+                .qr-container {
+                    display: flex;
+                    overflow-x: auto;
+                    scroll-snap-type: x mandatory;
+                    scroll-behavior: smooth;
+                    -webkit-overflow-scrolling: touch;
+                    width: 100%;
+                    padding-bottom: 10px; /* Add top/bottom padding */
+                    border-radius: 12px;  /* Slightly more rounded corners */
+                    /* box-shadow: inset 0px 0px 8px 5px hsl(198.9deg 92.41% 84.51%); */ /* More pronounced shadow */
+                }
+
+                .qr-item {
+                    z-index: 1;
+                    flex: 0 0 170px; /* Slightly larger items */
+                    height: 170px;
+                    margin: 0 15px; /* Increased margin for spacing */
+                    scroll-snap-align: center;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle item shadow */
+                    background-color: #ffffff; /* Very light gray background for items */
+                    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add box-shadow transition */
+                    background: white;
+                    width: 100%;
+                    height: max-content;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+
+                .qr-item.selected {
+                    transform: scale(1); /* Slightly reduced scaling */
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* More pronounced shadow on selected item */
+
+                }
+
+                .qr-code {
+                    width: 150px;
+                    height: 150px;
+                    width: 300px;
+                    height: 100%;
+                    padding: 24px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    min-width: 85%;
+                }
+
+                .arrow-button {
+                    position: absolute;
+                    top: 45%;
+                    transform: translateY(-50%); /* Center vertically */
+                    border: none;
+                    border-radius: 50%; /* Make circular */
+                    width: 40px;
+                    height: 500px;
+                    color: rgba(0,0,0,0.2);
+                    font-size: 24px;
+                    cursor: pointer;
+                    z-index: 2; /* Ensure buttons are above QR codes */
+                    opacity: 0.85;  /* Slightly transparent */
+                    transition: opacity 0.3s;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 2;
+                }
+
+
+                .arrow-button:hover {
+                    opacity: 1; /* Make fully opaque on hover */
+
+                }
+
+                .arrow-left {
+                    left: 10px;
+
+                }
+
+                .arrow-right {
+                    right: 10px;
+                }
+
+                .qr-container2 {
+                    /* ... other container styles ... */
+                    position: relative; /* Allow absolute positioning of arrows and pseudo-elements */
+                    overflow: hidden; /* Hide content overflowing the container, including the pseudo-elements */
+                    width: 100%; /* Full width */
+                    border-radius: 12px;  /* Slightly more rounded corners */
+                    box-shadow: inset 0px 0px 8px 5px hsl(198.9deg 92.41% 84.51%); /* More pronounced shadow */
+                    /* border: 1px solid #ccc; */
+                }
+
+                .qr-container2::before,
+                .qr-container2::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    width: 30%;  /* Width of the fade effect */
+                    z-index: 1; /* Place above QR codes but below arrow buttons */
+                    pointer-events: none; /* Allow clicks to pass through */
+                }
+
+                .qr-container2::before {
+                    left: 0;
+                    background: linear-gradient(to right, rgba(242, 242, 242, 0), rgba(255, 255, 255, 0)); /* Fade from white to transparent */
+                }
+
+                .qr-container2::after {
+                    right: 0;
+                    background: linear-gradient(to left, rgba(242, 242, 242, 0), rgba(255, 255, 255, 0)); /* Fade from white to transparent */
+                }
+                
+
+                * ::-webkit-scrollbar {  /* For WebKit browsers (Chrome, Safari) */
+                    height: 6px; /* Increased height for a thicker scrollbar */
+                    width: 6px; /* For vertical scrollbars if needed */
+                    border-radius: 10px; /* More rounded corners */ 
+                }
+
+                * ::-webkit-scrollbar-thumb {
+                    background: #333;  /* Very dark gray/almost black thumb */
+                    border-radius: 10px; /* Rounded corners for the thumb */
+                }
+                * ::-webkit-scrollbar-track {
+                    background: #f0f0f0; /* Very light gray track */
+                    border-radius: 10px; /* Rounded corners for the track */
+
+                }
+
+                .new-span {
+                    font-size: 20px;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                    color: #00223f;
+                }
+                        
+                .hidden {
+                    filter: blur(5px);
+                    color: hsl(0deg 0% 0% / 50%);
+                }
+
+                .momentHidden {
+                    width: fit-content;
+                    border-radius: 12px;
+                }
+            </style>
+        </head>
+
+        <body>
+            <!-- <div class="header">
+                <h1>Palavras mais usadas no Inglês</h1>
+            </div> -->
+            <!-- <div class="subheader">
+                <p>
+                    <span>•&nbsp;&nbsp;</span>
+                    <span>Empresa referente:&nbsp;</span>
+                    <span style="font-weight: bold;">${Let_nameCompany}</span>
+                </p>
+                <p>
+                    <span>•&nbsp;&nbsp;</span>
+                    <span>Esse link expira em:&nbsp;</span>
+                    <span id="expirationDate" style="font-weight: bold;">${Let_timeExpire}</span>
+                </p>
+            </div> -->
+
+            <div class="main">
+                <div class="qr-info" style="
+                justify-content: flex-start;
+                margin-left: 46px;
+                margin-top: 12px;
+            ">
+                </div>
+
+                    <div class="qr-container" id="qrContainer" style="
+                    height: 100%;
+                    padding-top: 10px;
+                ">
+                    </div>
+
+                <div class="buttons" style="
+                width: 100%;
+                justify-content: space-between;
+            ">
+                    <div id="prevButton">
+                        <svg class="arrow-button arrow-left" viewBox="0 0 64 64">
+                            <path d="M64 32a32 32 0 1 0-32 32 32.001 32.001 0 0 0 32-32zM34.79 44.361L19.984 31.828 34.79 19.307a2 2 0 1 1 2.583 3.054l-11.195 9.47 11.196 9.478a2 2 0 1 1-2.585 3.052z"
+                            fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <div id="nextButton">
+                        <svg class="arrow-button arrow-right" viewBox="0 0 64 64">
+                            <path d="M0 32A32 32 0 1 0 32 0 32 32 0 0 0 0 32zm29.21-12.36l14.805 12.534-14.805 12.52a2 2 0 1 1-2.583-3.055l11.195-9.467-11.196-9.479a2 2 0 1 1 2.585-3.052z"
+                            fill="currentColor"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+
+            <script>
+                // Sample data - Replace with your actual data from the backend
+                const qrData = [
+                    {
+                        englishWord: 'Hello',
+                        possiblePortugueseWords: ['Olá', 'Cumprimento', 'Oi'],
+                        sentence1: { english: '<b>Hello</b>, how are you?', portuguese: '<b>Olá</b>, como você está?' },
+                        sentence2: { english: '<b>Hello</b> to everyone here!', portuguese: '<b>Olá</b> a todos aqui!' },
+                        sentence3: { english: 'I wanted to say <b>hello</b>.', portuguese: 'Eu queria dizer <b>olá</b>.' }
+                    },
+                    {
+                        englishWord: 'World',
+                        possiblePortugueseWords: ['Mundo', 'Terra', 'Planeta'],
+                        sentence1: { english: 'The <b>world</b> is beautiful.', portuguese: 'O <b>mundo</b> é lindo.' },
+                        sentence2: { english: 'We live on this <b>world</b>.', portuguese: 'Vivemos neste <b>mundo</b>.' },
+                        sentence3: { english: 'Hello, <b>world</b>!', portuguese: 'Olá, <b>mundo</b>!' }
+                    },
+                    {
+                        englishWord: 'Learn',
+                        possiblePortugueseWords: ['Aprender', 'Estudar', 'Conhecer'],
+                        sentence1: { english: 'I want to <b>learn</b> English.', portuguese: 'Quero <b>aprender</b> inglês.' },
+                        sentence2: { english: '<b>Learning</b> is fun!', portuguese: '<b>Aprender</b> é divertido!' },
+                        sentence3: { english: 'We <b>learn</b> something new every day.', portuguese: '<b>Aprendemos</b> algo novo todos os dias.' }
+                    }
+                ];
+
+                const qrContainer = document.getElementById('qrContainer');
+
+                let currentCardIndex = localStorage.getItem('currentCardIndex') || 0;
+                currentCardIndex = parseInt(currentCardIndex);
+
+                let realIndex = 0
+
+                if (currentCardIndex > qrData.length - 1) {
+                    realIndex = 0
+                    localStorage.setItem('currentCardIndex', 0)
+                }
+                else {
+                    realIndex = currentCardIndex
+                }
+
+                let currentIndex = realIndex;
+                let selectedQrItem = null;  // Keep track of the currently selected item
+
+                function toggleVisibility(id) {
+                    const element = document.getElementById(id);
+                    element.classList.toggle('hidden');
+                }
+
+                function updateQrDisplay() {
+                    const currentQr = qrData[currentIndex];
+                    const qrCodeUrl = `https://p.wikirip.com/${currentQr.wall_id_url}`;
+
+                    // Update download button to download current QR code
+
+                    // Update Share Button (Mobile Only)
+
+                    if (selectedQrItem) {
+                        selectedQrItem.classList.remove('selected');
+                    }
+                    selectedQrItem = qrContainer.children[currentIndex];
+                    selectedQrItem.classList.add('selected');
+
+                    localStorage.setItem('currentCardIndex', currentIndex);
+                }
+
+
+                qrData.forEach((card, index) => {
+                    const qrItem = document.createElement('div');
+                    qrItem.classList.add('qr-code');
+                    qrItem.classList.add('qr-item');
+                    qrItem.innerHTML = `
+                        
+                        <div onclick="toggleVisibility('possible-words-${index}')" style="
+                            display: flex;
+                            flex-wrap: wrap;
+                            flex-direction: column;
+                            align-items: center;
+                            cursor: pointer; padding: 5px;
+                            gap: 2px;
+                            margin: 0px;
+                        "><h2>${card.englishWord}</h2>
+                            <p id="possible-words-${index}" class="hidden momentHidden">${card.possiblePortugueseWords.join(' / ')}</p>
+                        </div>
+
+                        <div style="
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0px;
+                            align-items: center;
+                            margin: 0px;
+                            height: 100%;
+                            justify-content: space-evenly;
+                        ">
+                            <div onclick="toggleVisibility('sentence1-pt-${index}')" style="
+                                display: flex;
+                                align-items: center;
+                                flex-direction: column;
+                                cursor: pointer; padding: 5px;
+                                width: 100%;
+                                gap: 8px;
+                            ">
+                                <p>${card.sentence1.english}</p>
+                                <div style="
+                                    background: hsl(0deg 0% 0% / 6%);
+                                    height: 1px;
+                                    width: 85%;
+                                "></div>
+                                <p id="sentence1-pt-${index}" class="hidden momentHidden">${card.sentence1.portuguese}</p>
+                            </div>
+                            <div onclick="toggleVisibility('sentence2-pt-${index}')" style="
+                                display: flex;
+                                align-items: center;
+                                flex-direction: column;
+                                cursor: pointer; padding: 5px;
+                                width: 100%;
+                                gap: 8px;
+                            ">
+                                <p>${card.sentence2.english}</p>
+                                <div style="
+                                    background: hsl(0deg 0% 0% / 6%);
+                                    height: 1px;
+                                    width: 85%;
+                                "></div>
+                                <p id="sentence2-pt-${index}" class="hidden momentHidden">${card.sentence2.portuguese}</p>
+                            </div>
+                            <div onclick="toggleVisibility('sentence3-pt-${index}')" style="
+                                    display: flex;
+                                    align-items: center;
+                                    flex-direction: column;
+                                    cursor: pointer; padding: 5px;
+                                    width: 100%;
+                                    gap: 8px;
+                                ">
+                                <p>${card.sentence3.english}</p>
+                                <div style="
+                                    background: hsl(0deg 0% 0% / 6%);
+                                    height: 1px;
+                                    width: 85%;
+                                "></div>
+                                <p id="sentence3-pt-${index}" class="hidden momentHidden">${card.sentence3.portuguese}</p>
+                            </div>
+                        </div>
+
+                        <div class="actions" style="
+                            display: flex;
+                            justify-content: space-between;
+                            width: 100%;
+                        ">
+                            <a href="https://www.google.com/search?udm=2&q=${encodeURIComponent(card.englishWord)}" target="_blank">
+                                <svg style="
+                                        margin-left: 12px;
+                                        color: #202020;
+                                        width: 42px;
+                                        height: 42px;
+                                    " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title"
+                                    aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <path data-name="layer1"
+                                    d="M24 14V8H2v46a2 2 0 0 0 2 2h56a2 2 0 0 0 2-2V14zm-4 8a4 4 0 1 1-4 4 4 4 0 0 1 4-4zm-6 26c0-2.1 5-12 10-12s4 4 6 4 2.5-12 8-12 12 18.3 12 20z"
+                                    fill="currentColor"></path>
+                                </svg>
+                            </a>
+                            <span class="new-span" id="qrIndex" style="
+                                margin-top: 19px;
+                            ">N° ${index + 1}</span>
+                            <a href="https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q=${encodeURIComponent(card.englishWord)}" target="_blank">
+                                <svg style="
+                                        margin-right: 12px;
+                                        color: #202020;
+                                        width: 42px;
+                                        height: 42px;
+                                    " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title"
+                                    aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <path data-name="layer1"
+                                    d="M30 40c-2.2 0-4 1.4-4 3s1.8 3 4 3 4-1.4 4-3-1.8-3-4-3z" fill="#202020"></path>
+                                    <path data-name="layer1" d="M24 14V8H2v46a2 2 0 0 0 2 2h56a2 2 0 0 0 2-2V14zm19 18a2 2 0 0 1-2-2c0-2.2-.6-3.8-1.7-4.8a5.7 5.7 0 0 0-3.1-1.2l1.7 17.8v.1A6.1 6.1 0 0 1 38 43c0 3.9-3.6 7-8 7s-8-3.1-8-7 3.6-7 8-7a8.9 8.9 0 0 1 3.4.7l-1.6-16.4 1.9-.3c.2 0 4.9-.7 8.2 2.2S45 26.6 45 30a2 2 0 0 1-2 2z"
+                                    fill="currentColor"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    `;
+
+                    qrContainer.appendChild(qrItem);
+
+                    qrItem.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateQrDisplay();
+                        scrollToQrCode(currentIndex);
+                    });
+
+                });
+
+                // Initial display update
+                updateQrDisplay();
+                scrollToQrCode(currentIndex)
+
+                // Scroll snapping to center
+                // Scroll snapping to center, considering zoom
+                qrContainer.addEventListener('scroll', () => {
+                    const containerRect = qrContainer.getBoundingClientRect();
+                    const centerX = containerRect.left + containerRect.width / 2;
+                    let closestItem = null;
+                    let minDistance = Infinity;
+
+                    const qrItems = qrContainer.querySelectorAll('.qr-item');
+                    qrItems.forEach(item => {
+                        const itemRect = item.getBoundingClientRect();
+                        const itemCenterX = itemRect.left + itemRect.width / 2;
+                        const distance = Math.abs(centerX - itemCenterX);
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            closestItem = item;
+                        }
+                    });
+
+                    if (closestItem) {
+                        currentIndex = Array.from(qrItems).indexOf(closestItem);
+                        updateQrDisplay();
+                    }
+                });
+
+                const prevButton = document.getElementById('prevButton');
+                const nextButton = document.getElementById('nextButton');
+
+                prevButton.addEventListener('click', () => {
+                    if (currentIndex > 0) { // Only decrement if not at the beginning
+                        currentIndex--;
+                        updateQrDisplay(currentIndex);
+                        scrollToQrCode(currentIndex);
+                    }
+                });
+
+                nextButton.addEventListener('click', () => {
+                    if (currentIndex < qrData.length - 1) { // Only increment if not at the end
+                        currentIndex++;
+                        updateQrDisplay(currentIndex);
+                        scrollToQrCode(currentIndex);
+                    }
+                });
+
+                document.addEventListener('keydown', function(event) {
+                    if (event.key === 'ArrowLeft') { // Seta para a esquerda
+                        if (currentIndex > 0) { // Apenas decrementar se não estiver no início
+                            currentIndex--;
+                            updateQrDisplay(currentIndex);
+                            scrollToQrCode(currentIndex);
+                        }
+                    } else if (event.key === 'ArrowRight') { // Seta para a direita
+                        if (currentIndex < qrData.length - 1) { // Apenas incrementar se não estiver no final
+                            currentIndex++;
+                            updateQrDisplay(currentIndex);
+                            scrollToQrCode(currentIndex);
+                        }
+                    }
+                });
+
+
+
+                function scrollToQrCode(index) {
+                    const qrItem = qrContainer.querySelectorAll('.qr-item')[index];
+                    qrContainer.scrollTo({
+                        left: qrItem.offsetLeft - qrContainer.offsetWidth / 2 + qrItem.offsetWidth / 2,
+                        behavior: 'smooth'
+                    });
+                }
+            </script>
+
+        </body>
+    </html>
