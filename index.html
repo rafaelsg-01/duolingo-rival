@@ -81,6 +81,7 @@
                     font-size: 1.25em;
                     font-family: 'Baloo', system-ui, sans-serif;
                     font-weight: 400; /* Regular */
+                    transition: filter 0.15s ease, color 0.3s ease;
                 }
 
                 .header {
@@ -114,7 +115,13 @@
                     align-items: center;
                     width: 100%;
                     max-width: 900px; /* Limit the maximum width */
-                    height: calc(100svh - 0px);
+                    height: calc(100svh - 30px);
+                }
+
+                @media (max-width: 768px) {
+                    .main {
+                        height: calc(100svh - 0px); /* Estilo para celulares */
+                    }
                 }
 
                 .qr-info {
@@ -166,6 +173,13 @@
                     flex-wrap: wrap;
                 }
 
+                a:hover svg {
+                    color: hsl(0deg 0% 13% / 70%) !important; /* Cor do SVG ao passar o mouse */
+                }
+
+                a svg {
+                    transition: color 0.15s ease; /* Suaviza a transição no SVG */
+                }
 
                 .button {
                     padding: 13px 20px;
@@ -257,32 +271,34 @@
                     transform: translateY(-50%); /* Center vertically */
                     border: none;
                     border-radius: 50%; /* Make circular */
-                    width: 40px;
+                    width: 50px;
                     height: 500px;
-                    color: rgba(0,0,0,0.2);
+                    color: rgba(0,0,0,0.15);
                     font-size: 24px;
                     cursor: pointer;
                     z-index: 2; /* Ensure buttons are above QR codes */
-                    opacity: 0.85;  /* Slightly transparent */
                     transition: opacity 0.3s;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     z-index: 2;
+                    transition: color 0.15s ease; /* Suaviza a transição no SVG */
                 }
 
 
                 .arrow-button:hover {
-                    opacity: 1; /* Make fully opaque on hover */
+                    color: rgba(0,0,0,0.45);
 
                 }
 
                 .arrow-left {
+                    padding-right: 10px;
                     left: 10px;
 
                 }
 
                 .arrow-right {
+                    padding-left: 10px;
                     right: 10px;
                 }
 
@@ -338,7 +354,7 @@
                     font-size: 20px;
                     font-weight: 600;
                     letter-spacing: 1px;
-                    color: hsl(208deg 100% 12% / 50%);
+                    color: hsl(208deg 100% 12% / 35%);
                 }
                         
                 .hidden {
