@@ -7,17 +7,17 @@
             <meta name="robots" content="index, follow">
             <meta name="googlebot" content="index, follow">
 
-            <meta name="description" content="Rival Do Duolingo | Duolingo's Rival">
+            <meta name="description" content="Duolingo's Rival">
             <meta name="author" content="Da Silva">
 
             <meta property="og:title" content="Rival Do Duolingo">
-            <meta property="og:description" content="Palavras mais usadas no Inglês | Most used words in English">
+            <meta property="og:description" content="Most used words in English">
             <meta property="og:type" content="website">
             <meta property="og:locale" content="pt_BR">
-            <meta property="og:image" content="./capa.jpeg">
+            <meta property="og:image" content="https://duolingorival-public-page.pages.dev/capa.jpeg">
 	        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%230b4e88'/></svg>">
 
-            <title>Rival Do Duolingo | Duolingo's Rival</title>
+            <title>Duolingo's Rival</title>
             <style>
                 *, html {
                     scroll-behavior: smooth !important;
@@ -33,7 +33,7 @@
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    min-height: 100vh; /* Ensure content fills the viewport */
+                    min-height: 100svh; /* Ensure content fills the viewport */
                     background: radial-gradient(circle, #e0f7fa, #b3e5fc),
                         linear-gradient(45deg, #b3e5fc, #81d4fa),
                         linear-gradient(135deg, #81d4fa, #e0f7fa),
@@ -47,6 +47,7 @@
 
                 p {
                     margin: 0;
+                    font-size: 1.25em;
                 }
 
                 .header {
@@ -78,8 +79,8 @@
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    width: 90%;
-                    max-width: 800px; /* Limit the maximum width */
+                    width: 100%;
+                    max-width: 900px; /* Limit the maximum width */
                     height: 100vh;
                 }
 
@@ -214,7 +215,7 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-                    min-width: 85%;
+                    min-width: 95%;
                 }
 
                 .arrow-button {
@@ -451,7 +452,9 @@
                             cursor: pointer; padding: 5px;
                             gap: 2px;
                             margin: 0px;
-                        "><h2>${card.englishWord}</h2>
+                        "><h2 style="
+                            font-size: 2em;
+                        ">${card.englishWord}</h2>
                             <p id="possible-words-${index}" class="hidden momentHidden">${card.possiblePortugueseWords.join(' / ')}</p>
                         </div>
 
