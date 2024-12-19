@@ -1,4 +1,4 @@
-{"wordlist": [
+[
     {
         "englishWord": "the",
         "possiblePortugueseWords": ["o", "a", "os", "as"],
@@ -4494,4 +4494,3 @@
         "sentence3": { "english": "The decision was made among friends.", "portuguese": "A decisão foi tomada entre amigos." }
       }
     ]
-  }
